@@ -1,4 +1,89 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+/* Estilos globales */
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f3f3f3;
+}
+
+/* Contenedor principal de la aplicación */
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Estilo para el sidebar */
+.sidebar {
+  width: 300px;
+  background-color: #202124;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.sidebar label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.sidebar input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #303134;
+  color: white;
+}
+
+.sidebar input[type="text"]:disabled {
+  background-color: #404245;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar button.add-waypoint {
+  background-color: #007bff;
+  color: white;
+}
+
+.sidebar button.calculate-route {
+  background-color: #34a853;
+  color: white;
+}
+
+.sidebar button.add-waypoint:hover {
+  background-color: #0056b3;
+}
+
+.sidebar button.calculate-route:hover {
+  background-color: #1e7b35;
+}
+
+/* Estilos para el mapa */
+.map {
+  flex: 1;
+  position: relative;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
 }
