@@ -14,7 +14,7 @@ const App = () => {
   const [waypoints, setWaypoints] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
 
-  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const apiKey = "AIzaSyDnHzDbpk6JTDX1LE-RSX9zZbYy3LxTjGE";
 
   const mapStyle = [
     { elementType: "geometry", stylers: [{ color: "#212121" }] },
