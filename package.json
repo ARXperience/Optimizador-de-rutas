@@ -1,29 +1,32 @@
 {
   "name": "react",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "main": "src/index.tsx",
+  "description": "App de rutas estilo Waze usando React y Google Maps",
+  "main": "src/index.js",
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "^5.0.0",
     "@react-google-maps/api": "2.20.5"
   },
   "devDependencies": {
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0",
-    "loader-utils": "3.2.1",
-    "typescript": "5.7.2"
+    "react-router-dom": "^6.0.0",
+    "typescript": "^5.7.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"],
-  "homepage": "https://arxperience.github.io/Optimizador-de-rutas/"
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "homepage": "https://<tu-usuario-de-github>.github.io/<nombre-de-tu-repositorio>"
 }
