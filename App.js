@@ -14,7 +14,7 @@ const App = () => {
   const [waypoints, setWaypoints] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
 
-  const apiKey = "AIzaSyDnHzDbpk6JTDX1LE-RSX9zZbYy3LxTjGE";
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
   const mapStyle = [
     { elementType: "geometry", stylers: [{ color: "#212121" }] },
@@ -34,6 +34,8 @@ const App = () => {
 
   const calculateRoute = (customStart = null) => {
     const origin = customStart || start;
+
+    // Verifica que el destino no esté vacío o incompleto
     if (!origin || !end || end.trim() === "") return;
 
     const directionsService = new google.maps.DirectionsService();
@@ -56,25 +58,31 @@ const App = () => {
 
   useEffect(() => {
     let watchId;
+
     if (navigator.geolocation) {
       watchId = navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
           const newLocation = { lat: latitude, lng: longitude };
           const newStart = `${latitude},${longitude}`;
+
           setUserLocation(newLocation);
           setStart(newStart);
+
+          // Recalcula la ruta automáticamente si hay un destino válido
           if (end && end.trim() !== "") calculateRoute(newStart);
         },
-        () => alert("Error al obtener la ubicación."),
+        (error) => alert("Error al obtener la ubicación."),
         { enableHighAccuracy: true, maximumAge: 0 }
       );
     }
 
     return () => {
-      if (watchId) navigator.geolocation.clearWatch(watchId);
+      if (watchId) {
+        navigator.geolocation.clearWatch(watchId);
+      }
     };
-  }, [end, waypoints]);
+  }, [end, waypoints]); // Depende de destino y waypoints para actualizar correctamente
 
   return (
     <div style={{ display: "flex" }}>
@@ -120,10 +128,12 @@ const App = () => {
             />
           </div>
         ))}
-        <button onClick={() => setWaypoints([...waypoints, ""])}>
+        <button onClick={() => setWaypoints([...waypoints, ""])} className="add-waypoint">
           Agregar Waypoint
         </button>
-        <button onClick={() => calculateRoute()}>Calcular Ruta</button>
+        <button onClick={() => calculateRoute()} className="calculate-route">
+          Calcular Ruta
+        </button>
       </div>
 
       <LoadScript googleMapsApiKey={apiKey}>
@@ -140,7 +150,7 @@ const App = () => {
               position={userLocation}
               icon={{
                 url: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
-                scaledSize: { width: 40, height: 40 }, // Define el tamaño directamente como un objeto
+                scaledSize: new window.google.maps.Size(40, 40),
               }}
             />
           )}
